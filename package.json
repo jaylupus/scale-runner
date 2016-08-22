@@ -1,0 +1,15 @@
+{
+  "name": "scale-runner",
+  "version": "1.0.0",
+  "description": "An app for generating scale sequences on guitar.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Jonah Wolf",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.15.0",
+    "teoria": "^2.2.0"
+  }
+}
