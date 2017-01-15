@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-export default function Pattern(num) {
+module.exports = function Pattern(num) {
     let i = 0,
         j = 0,
         arr = _.shuffle(_.range(num));

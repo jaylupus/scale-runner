@@ -1,4 +1,4 @@
-import Pattern from "../pattern.js";
+var Pattern = require('../pattern.js');
 const expect = require('chai').expect;
 
 describe('Pattern', function() {

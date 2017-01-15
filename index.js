@@ -1,37 +1,21 @@
 var teoria = require('teoria');
 var _ = require('lodash');
+var Vex = require('vexflow');
 
-if (!teoria.note.random) {
-    teoria.note.random = function() {
-        return this.fromKey(_.sample(_.range(12)));
-    }
-}
+var VF = Vex.Flow;
+var div = document.getElementById("bar");
+var renderer = new VF.Renderer(div, VF.Renderer.Backends.SVG);
 
-if (!teoria.Note.random) {
-    teoria.Note.random = function() {
-        return this.fromKey(_.sample(_.range(12)));
-    }
-}
+// Configure the rendering context.
+renderer.resize(500, 500);
+var context = renderer.getContext();
+context.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
-function getRandomScaleName() {
-    return _.sample(teoria.Scale.KNOWN_SCALES);
-};
+// Create a stave of width 400 at position 10, 40 on the canvas.
+var stave = new VF.Stave(10, 40, 400);
 
-// function getRandomScale() {
-//     return getRandomNote().scale(getRandomScaleName());
-// };
+// Add a clef and time signature.
+stave.addClef("treble").addTimeSignature("4/4");
 
-if (!teoria.Scale.prototype.extendedGet) {
-    teoria.Scale.prototype.extendedGet = function(i) {
-        let len = this.scale.length + 1;
-        if (i <= 0) {
-            return this.get(i % len + len).interval(teoria.Interval([Math.floor(i / len), 0]));
-        } else if (i >= len) {
-            return this.get(i % len).interval(teoria.Interval([Math.floor(i / len), 0]));
-        } else {
-            return this.get(i);
-        }
-    };
-}
-
-export default teoria;
+// Connect it to the rendering context and draw!
+stave.setContext(context).draw();
